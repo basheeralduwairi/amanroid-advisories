@@ -1,0 +1,76 @@
+# AmanRoid expert-curated security advisories
+
+This public repository contains the reviewed, Arabic-first security advisory
+feed consumed by AmanRoid. It is a static GitHub Pages site: there is no mobile
+user account, backend, database, Firebase integration, automated AI agent, or
+paid AI service.
+
+- Website: <https://basheeralduwairi.github.io/amanroid-advisories/>
+- JSON feed: <https://basheeralduwairi.github.io/amanroid-advisories/advisories.json>
+- Schema: `schema.json`
+
+The initial production feed is intentionally empty until a cybersecurity expert
+approves a real, evidence-backed campaign. The local candidate file supplied by
+research is not copied into this public repository.
+
+## Publication procedure
+
+1. Research the incident manually using official and independently corroborated
+   sources. Preserve original URLs, publication dates, and an evidence summary.
+2. Keep the candidate JSON outside this repository and run:
+
+   ```bash
+   python3 scripts/validate_candidate.py /path/to/candidates.json
+   python3 scripts/compare_feed.py /path/to/candidates.json
+   ```
+
+3. A cybersecurity expert reviews the exact permanent ID, classification,
+   status, dates, recommendations, and sources. The expert must make an
+   explicit command-line approval decision; there is no automatic approval.
+4. Before publishing, the candidate must contain a real `published_at` UTC
+   timestamp and remain a `draft`. Then run, once per approved ID:
+
+   ```bash
+   python3 scripts/publish_approved.py \
+     --candidates /path/to/candidates.json \
+     --approve AMANROID-2026-11-001 \
+     --reviewer "Reviewer name"
+   python3 scripts/validate_feed.py
+   git diff -- advisories.json
+   ```
+
+5. Commit the approved feed change and open a pull request. GitHub Actions must
+   pass before merging to `main`. The Pages deployment runs only after the
+   validation workflow succeeds.
+
+6. To correct an advisory, withdraw it explicitly and preserve the record in a
+   non-public editorial log outside the repository:
+
+   ```bash
+   python3 scripts/withdraw.py --id AMANROID-2026-11-001 \
+     --log /secure/editorial/withdrawn.json --reason "Reason"
+   ```
+
+`review_status` must be `approved` for every public record. Draft, rejected, and
+withdrawn records never belong in `advisories.json`.
+
+## Validation commands
+
+```bash
+python3 -m pip install -r requirements-dev.txt
+python3 scripts/validate_feed.py
+python3 scripts/check_review_due.py
+python3 -m unittest discover -s tests -v
+```
+
+The validator enforces the JSON Schema, unique permanent IDs, approved-only
+publication, bounded strings, UTC chronology, at least one HTTPS source, safe
+source URLs, defanged indicators, no executable HTML, and a 1 MiB maximum feed.
+All rendered website values are treated as untrusted text.
+
+## Manual review guide
+
+See [`prompts/manual_research_ar.md`](prompts/manual_research_ar.md) and
+[`prompts/manual_research_en.md`](prompts/manual_research_en.md). The review
+guide distinguishes confirmed Jordan incidents from global threats that may be
+relevant to Jordan and prohibits claims unsupported by the sources.

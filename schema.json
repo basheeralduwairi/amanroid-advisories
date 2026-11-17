@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schema.json",
+  "title": "AmanRoid Expert-Curated Advisory Feed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "feed_name",
+    "language",
+    "country",
+    "feed_version",
+    "updated_at",
+    "advisories"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "feed_name": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "language": { "type": "string", "const": "ar" },
+    "country": { "type": "string", "const": "JO" },
+    "feed_version": { "type": "integer", "minimum": 1 },
+    "updated_at": { "type": "string", "format": "date-time", "maxLength": 40 },
+    "advisories": {
+      "type": "array",
+      "maxItems": 500,
+      "items": { "$ref": "#/$defs/advisory" }
+    }
+  },
+  "$defs": {
+    "shortText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[^<]*$"
+    },
+    "longText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "pattern": "^[^<]*$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 40
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "published_at", "evidence_summary"],
+      "properties": {
+        "name": { "$ref": "#/$defs/shortText" },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://[^\\s<>]+$",
+          "maxLength": 2048
+        },
+        "published_at": { "$ref": "#/$defs/date" },
+        "evidence_summary": { "$ref": "#/$defs/longText" }
+      }
+    },
+    "indicator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "defanged"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["domain", "url", "email", "phone", "hash", "keyword"]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^[^<\\r\\n]+$"
+        },
+        "defanged": { "type": "boolean", "const": true }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "alt"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^images/[A-Za-z0-9._/-]+$",
+          "maxLength": 240
+        },
+        "alt": { "$ref": "#/$defs/shortText" }
+      }
+    },
+    "advisory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "summary",
+        "description",
+        "category",
+        "severity",
+        "status",
+        "confidence",
+        "targeted_entities",
+        "channels",
+        "indicators",
+        "prevention",
+        "victim_actions",
+        "sources",
+        "published_at",
+        "updated_at",
+        "last_observed_at",
+        "review_due_at",
+        "review_status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^AMANROID-[0-9]{4}-[0-9]{2}-[0-9]{3,}$",
+          "maxLength": 64
+        },
+        "title": { "$ref": "#/$defs/shortText" },
+        "summary": { "$ref": "#/$defs/longText" },
+        "description": { "$ref": "#/$defs/longText" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "phishing",
+            "banking_fraud",
+            "ewallet_fraud",
+            "impersonation",
+            "malicious_apps",
+            "account_takeover",
+            "investment_fraud",
+            "shopping_fraud",
+            "employment_fraud",
+            "ai_fraud",
+            "identity_theft",
+            "other"
+          ]
+        },
+        "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+        "status": {
+          "type": "string",
+          "enum": ["confirmed_active", "recently_reported", "suspected_active", "historical", "resolved"]
+        },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+        "targeted_entities": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": { "$ref": "#/$defs/shortText" }
+        },
+        "channels": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": { "$ref": "#/$defs/shortText" }
+        },
+        "indicators": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "$ref": "#/$defs/indicator" }
+        },
+        "prevention": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": { "$ref": "#/$defs/longText" }
+        },
+        "victim_actions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "items": { "$ref": "#/$defs/longText" }
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": { "$ref": "#/$defs/source" }
+        },
+        "images": {
+          "type": "array",
+          "maxItems": 10,
+          "items": { "$ref": "#/$defs/image" }
+        },
+        "published_at": { "$ref": "#/$defs/date" },
+        "updated_at": { "$ref": "#/$defs/date" },
+        "last_observed_at": { "$ref": "#/$defs/date" },
+        "review_due_at": { "$ref": "#/$defs/date" },
+        "review_status": {
+          "type": "string",
+          "enum": ["draft", "approved", "rejected", "withdrawn"]
+        }
+      }
+    }
+  }
+}

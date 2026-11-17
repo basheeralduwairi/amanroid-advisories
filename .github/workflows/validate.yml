@@ -1,0 +1,39 @@
+name: Validate advisory feed
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'advisories.json'
+      - 'schema.json'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'requirements-dev.txt'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'advisories.json'
+      - 'schema.json'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'requirements-dev.txt'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install validation dependency
+        run: python -m pip install --requirement requirements-dev.txt
+      - name: Validate public feed
+        run: python scripts/validate_feed.py
+      - name: Run pipeline tests
+        run: python -m unittest discover -s tests -v
