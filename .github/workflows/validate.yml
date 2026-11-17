@@ -6,6 +6,8 @@ on:
     paths:
       - 'advisories.json'
       - 'schema.json'
+      - 'index.html'
+      - 'images/**'
       - 'scripts/**'
       - 'tests/**'
       - 'requirements-dev.txt'
@@ -14,6 +16,8 @@ on:
     paths:
       - 'advisories.json'
       - 'schema.json'
+      - 'index.html'
+      - 'images/**'
       - 'scripts/**'
       - 'tests/**'
       - 'requirements-dev.txt'
