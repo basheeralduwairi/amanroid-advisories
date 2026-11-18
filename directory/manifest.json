@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-18T00:00:00Z",
+  "countries": [
+    {"code": "JO", "name_ar": "الأردن", "dataset_path": "directory/jo.json", "coverage_status": "active", "last_reviewed_at": "2026-11-18T00:00:00Z"},
+    {"code": "SA", "name_ar": "السعودية", "dataset_path": "directory/sa.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "AE", "name_ar": "الإمارات", "dataset_path": "directory/ae.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "PS", "name_ar": "فلسطين", "dataset_path": "directory/ps.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "IQ", "name_ar": "العراق", "dataset_path": "directory/iq.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "EG", "name_ar": "مصر", "dataset_path": "directory/eg.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "KW", "name_ar": "الكويت", "dataset_path": "directory/kw.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "QA", "name_ar": "قطر", "dataset_path": "directory/qa.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "BH", "name_ar": "البحرين", "dataset_path": "directory/bh.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "OM", "name_ar": "سلطنة عمان", "dataset_path": "directory/om.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "LB", "name_ar": "لبنان", "dataset_path": "directory/lb.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "SY", "name_ar": "سوريا", "dataset_path": "directory/sy.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "YE", "name_ar": "اليمن", "dataset_path": "directory/ye.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "LY", "name_ar": "ليبيا", "dataset_path": "directory/ly.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "TN", "name_ar": "تونس", "dataset_path": "directory/tn.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "DZ", "name_ar": "الجزائر", "dataset_path": "directory/dz.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "MA", "name_ar": "المغرب", "dataset_path": "directory/ma.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "SD", "name_ar": "السودان", "dataset_path": "directory/sd.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "MR", "name_ar": "موريتانيا", "dataset_path": "directory/mr.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "SO", "name_ar": "الصومال", "dataset_path": "directory/so.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "DJ", "name_ar": "جيبوتي", "dataset_path": "directory/dj.json", "coverage_status": "coming_soon", "last_reviewed_at": null},
+    {"code": "KM", "name_ar": "جزر القمر", "dataset_path": "directory/km.json", "coverage_status": "coming_soon", "last_reviewed_at": null}
+  ]
+}

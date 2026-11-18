@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/emergency.schema.json",
+  "title": "AmanRoid emergency guidance dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "country_code", "updated_at", "coverage_status", "coverage_note", "contacts"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "updated_at": {"type": "string", "format": "date-time", "pattern": "Z$"},
+    "coverage_status": {"type": "string", "enum": ["active", "coming_soon", "temporarily_unavailable"]},
+    "coverage_note": {"type": "string", "minLength": 1, "maxLength": 500, "pattern": "^[^<>]+$"},
+    "contacts": {"type": "array", "maxItems": 300, "items": {"$ref": "#/$defs/contact"}}
+  },
+  "$defs": {
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contact_id", "organization_id", "name_ar", "category", "official_url", "phone_numbers", "verification_sources", "verified_at", "review_due_at", "publication_status"],
+      "properties": {
+        "contact_id": {"type": "string", "pattern": "^[a-z0-9-]{3,100}$"},
+        "organization_id": {"type": "string", "pattern": "^[a-z0-9-]{3,80}$"},
+        "name_ar": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]+$"},
+        "category": {"type": "string", "enum": ["bank", "ewallet", "cybercrime_reporting", "government", "other"]},
+        "official_url": {"type": "string", "format": "uri", "pattern": "^https://[^\\s<>]+$"},
+        "phone_numbers": {"type": "array", "maxItems": 20, "items": {"type": "string", "pattern": "^\\+?[0-9 ()-]{6,25}$"}},
+        "verification_sources": {"type": "array", "minItems": 1, "items": {"type": "string", "format": "uri", "pattern": "^https://[^\\s<>]+$"}},
+        "verified_at": {"type": "string", "format": "date-time", "pattern": "Z$"},
+        "review_due_at": {"type": "string", "format": "date-time", "pattern": "Z$"},
+        "publication_status": {"type": "string", "enum": ["approved", "withdrawn"]}
+      }
+    }
+  }
+}
