@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "config_version": 1,
+  "updated_at": "2026-11-18T08:15:45Z",
+  "default_country": "JO",
+  "regional_feed": "feeds/regional.json",
+  "countries": [
+    {
+      "code": "JO",
+      "name_ar": "الأردن",
+      "enabled": true,
+      "feed_path": "feeds/jo.json",
+      "coverage_status": "active",
+      "last_reviewed_at": "2026-11-18T08:15:45Z"
+    },
+    {
+      "code": "SA",
+      "name_ar": "السعودية",
+      "enabled": false,
+      "feed_path": "feeds/sa.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "AE",
+      "name_ar": "الإمارات",
+      "enabled": false,
+      "feed_path": "feeds/ae.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "PS",
+      "name_ar": "فلسطين",
+      "enabled": false,
+      "feed_path": "feeds/ps.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "IQ",
+      "name_ar": "العراق",
+      "enabled": false,
+      "feed_path": "feeds/iq.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "EG",
+      "name_ar": "مصر",
+      "enabled": false,
+      "feed_path": "feeds/eg.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "KW",
+      "name_ar": "الكويت",
+      "enabled": false,
+      "feed_path": "feeds/kw.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "QA",
+      "name_ar": "قطر",
+      "enabled": false,
+      "feed_path": "feeds/qa.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "BH",
+      "name_ar": "البحرين",
+      "enabled": false,
+      "feed_path": "feeds/bh.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "OM",
+      "name_ar": "سلطنة عمان",
+      "enabled": false,
+      "feed_path": "feeds/om.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "LB",
+      "name_ar": "لبنان",
+      "enabled": false,
+      "feed_path": "feeds/lb.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "SY",
+      "name_ar": "سوريا",
+      "enabled": false,
+      "feed_path": "feeds/sy.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "YE",
+      "name_ar": "اليمن",
+      "enabled": false,
+      "feed_path": "feeds/ye.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "LY",
+      "name_ar": "ليبيا",
+      "enabled": false,
+      "feed_path": "feeds/ly.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "TN",
+      "name_ar": "تونس",
+      "enabled": false,
+      "feed_path": "feeds/tn.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "DZ",
+      "name_ar": "الجزائر",
+      "enabled": false,
+      "feed_path": "feeds/dz.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "MA",
+      "name_ar": "المغرب",
+      "enabled": false,
+      "feed_path": "feeds/ma.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "SD",
+      "name_ar": "السودان",
+      "enabled": false,
+      "feed_path": "feeds/sd.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "MR",
+      "name_ar": "موريتانيا",
+      "enabled": false,
+      "feed_path": "feeds/mr.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "SO",
+      "name_ar": "الصومال",
+      "enabled": false,
+      "feed_path": "feeds/so.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "DJ",
+      "name_ar": "جيبوتي",
+      "enabled": false,
+      "feed_path": "feeds/dj.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    },
+    {
+      "code": "KM",
+      "name_ar": "جزر القمر",
+      "enabled": false,
+      "feed_path": "feeds/km.json",
+      "coverage_status": "coming_soon",
+      "last_reviewed_at": null
+    }
+  ]
+}

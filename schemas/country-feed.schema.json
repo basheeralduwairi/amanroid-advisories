@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/country-feed.schema.json",
+  "title": "AmanRoid country advisory feed",
+  "description": "Country feeds use the public advisory schema with a country-specific top-level code.",
+  "allOf": [{ "$ref": "../schema.json" }]
+}

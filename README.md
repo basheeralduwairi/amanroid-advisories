@@ -7,11 +7,35 @@ paid AI service.
 
 - Website: <https://basheeralduwairi.github.io/amanroid-advisories/>
 - JSON feed: <https://basheeralduwairi.github.io/amanroid-advisories/advisories.json>
+- Country manifest: <https://basheeralduwairi.github.io/amanroid-advisories/countries.json>
+- Jordan country feed: <https://basheeralduwairi.github.io/amanroid-advisories/feeds/jo.json>
 - Schema: `schema.json`
 
-The initial production feed is intentionally empty until a cybersecurity expert
-approves a real, evidence-backed campaign. The local candidate file supplied by
-research is not copied into this public repository.
+The production feed currently contains only the four Jordan advisories that were
+explicitly reviewed and approved. The local candidate file supplied by research
+is not copied into this public repository; deferred, rejected, and withdrawn
+records remain outside the public feed.
+
+## Multi-country coverage
+
+`countries.json` is a schema-validated public manifest for the 22 supported
+Arab countries. Jordan is the only country with active local coverage at
+initialization. The other country feeds are valid empty feeds with
+`coming_soon` coverage and do not claim that the country is monitored.
+`feeds/regional.json` is reserved for expert-reviewed advisories that apply to
+more than one country.
+
+The Android application consumes the manifest over HTTPS, validates relative
+feed paths against this GitHub Pages origin, and keeps separate last-known-good
+caches for the manifest, each local country feed, and the regional feed.
+`advisories.json` remains unchanged as the backward-compatible Jordan endpoint
+for installed versions before multi-country support. Run the synchronization
+script whenever the approved Jordan feed changes:
+
+```bash
+python3 scripts/sync_country_feeds.py --write --updated-at 2026-11-18T00:00:00Z
+python3 scripts/validate_multicountry.py
+```
 
 ## Publication procedure
 
@@ -59,6 +83,7 @@ withdrawn records never belong in `advisories.json`.
 ```bash
 python3 -m pip install -r requirements-dev.txt
 python3 scripts/validate_feed.py
+python3 scripts/validate_multicountry.py
 python3 scripts/check_review_due.py
 python3 -m unittest discover -s tests -v
 ```

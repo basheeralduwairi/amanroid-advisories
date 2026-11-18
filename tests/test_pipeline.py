@@ -12,6 +12,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from validate_candidate import validate as validate_candidate  # noqa: E402
 from validate_feed import validate as validate_feed  # noqa: E402
+from validate_multicountry import validate_manifest  # noqa: E402
+from sync_country_feeds import COUNTRIES, check as check_country_sync  # noqa: E402
 
 
 def advisory(review_status="approved"):
@@ -135,6 +137,34 @@ class PipelineTests(unittest.TestCase):
             check=False,
         )
         self.assertNotEqual(result.returncode, 0)
+
+    def test_manifest_contains_all_supported_countries_with_only_jordan_active(self):
+        manifest = json.loads((ROOT / "countries.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            {entry["code"] for entry in manifest["countries"]},
+            {code for code, _ in COUNTRIES},
+        )
+        self.assertEqual(
+            [entry["code"] for entry in manifest["countries"] if entry["enabled"]],
+            ["JO"],
+        )
+        self.assertEqual(validate_manifest(ROOT / "countries.json"), [])
+
+    def test_country_feeds_are_empty_or_migrated_without_duplicates(self):
+        self.assertEqual(check_country_sync(), [])
+        self.assertEqual(
+            json.loads((ROOT / "feeds/jo.json").read_text(encoding="utf-8")),
+            json.loads((ROOT / "advisories.json").read_text(encoding="utf-8")),
+        )
+        for code, _ in COUNTRIES:
+            if code == "JO":
+                continue
+            feed_path = ROOT / f"feeds/{code.lower()}.json"
+            self.assertEqual(json.loads(feed_path.read_text(encoding="utf-8"))["advisories"], [])
+        self.assertEqual(
+            json.loads((ROOT / "feeds/regional.json").read_text(encoding="utf-8"))["advisories"],
+            [],
+        )
 
 
 if __name__ == "__main__":
