@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "language": "ar",
+  "updated_at": "2026-11-18T00:00:00Z",
+  "playbooks": [
+    {"id":"bank_fraud","title_ar":"احتيال على حساب بنكي","requires_verified_contact":true},
+    {"id":"unauthorized_card","title_ar":"عمليات غير مصرح بها على البطاقة","requires_verified_contact":true},
+    {"id":"ewallet_fraud","title_ar":"احتيال على محفظة إلكترونية","requires_verified_contact":true},
+    {"id":"suspicious_link","title_ar":"ضغطت على رابط مشبوه","requires_verified_contact":false},
+    {"id":"phishing_credentials","title_ar":"أدخلت بياناتي في صفحة تصيد","requires_verified_contact":false},
+    {"id":"verification_code","title_ar":"شاركت رمز تحقق","requires_verified_contact":false},
+    {"id":"whatsapp_takeover","title_ar":"استيلاء على حساب WhatsApp","requires_verified_contact":false},
+    {"id":"social_takeover","title_ar":"استيلاء على حساب تواصل اجتماعي","requires_verified_contact":false},
+    {"id":"suspicious_app","title_ar":"ثبّت تطبيقاً مشبوهاً","requires_verified_contact":false},
+    {"id":"investment_fraud","title_ar":"احتيال استثماري","requires_verified_contact":true},
+    {"id":"shopping_fraud","title_ar":"احتيال في التسوق الإلكتروني","requires_verified_contact":true},
+    {"id":"blackmail","title_ar":"ابتزاز إلكتروني","requires_verified_contact":true},
+    {"id":"identity_theft","title_ar":"اشتباه في سرقة الهوية","requires_verified_contact":true},
+    {"id":"lost_phone","title_ar":"فقدان أو سرقة الهاتف","requires_verified_contact":false}
+  ]
+}

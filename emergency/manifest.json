@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-18T00:00:00Z",
+  "playbooks_path": "emergency/playbooks.json",
+  "countries": [
+    {"code":"JO","name_ar":"الأردن","dataset_path":"emergency/jo.json","coverage_status":"active"},
+    {"code":"SA","name_ar":"السعودية","dataset_path":"emergency/sa.json","coverage_status":"coming_soon"},
+    {"code":"AE","name_ar":"الإمارات","dataset_path":"emergency/ae.json","coverage_status":"coming_soon"},
+    {"code":"PS","name_ar":"فلسطين","dataset_path":"emergency/ps.json","coverage_status":"coming_soon"},
+    {"code":"IQ","name_ar":"العراق","dataset_path":"emergency/iq.json","coverage_status":"coming_soon"},
+    {"code":"EG","name_ar":"مصر","dataset_path":"emergency/eg.json","coverage_status":"coming_soon"},
+    {"code":"KW","name_ar":"الكويت","dataset_path":"emergency/kw.json","coverage_status":"coming_soon"},
+    {"code":"QA","name_ar":"قطر","dataset_path":"emergency/qa.json","coverage_status":"coming_soon"},
+    {"code":"BH","name_ar":"البحرين","dataset_path":"emergency/bh.json","coverage_status":"coming_soon"},
+    {"code":"OM","name_ar":"سلطنة عمان","dataset_path":"emergency/om.json","coverage_status":"coming_soon"},
+    {"code":"LB","name_ar":"لبنان","dataset_path":"emergency/lb.json","coverage_status":"coming_soon"},
+    {"code":"SY","name_ar":"سوريا","dataset_path":"emergency/sy.json","coverage_status":"coming_soon"},
+    {"code":"YE","name_ar":"اليمن","dataset_path":"emergency/ye.json","coverage_status":"coming_soon"},
+    {"code":"LY","name_ar":"ليبيا","dataset_path":"emergency/ly.json","coverage_status":"coming_soon"},
+    {"code":"TN","name_ar":"تونس","dataset_path":"emergency/tn.json","coverage_status":"coming_soon"},
+    {"code":"DZ","name_ar":"الجزائر","dataset_path":"emergency/dz.json","coverage_status":"coming_soon"},
+    {"code":"MA","name_ar":"المغرب","dataset_path":"emergency/ma.json","coverage_status":"coming_soon"},
+    {"code":"SD","name_ar":"السودان","dataset_path":"emergency/sd.json","coverage_status":"coming_soon"},
+    {"code":"MR","name_ar":"موريتانيا","dataset_path":"emergency/mr.json","coverage_status":"coming_soon"},
+    {"code":"SO","name_ar":"الصومال","dataset_path":"emergency/so.json","coverage_status":"coming_soon"},
+    {"code":"DJ","name_ar":"جيبوتي","dataset_path":"emergency/dj.json","coverage_status":"coming_soon"},
+    {"code":"KM","name_ar":"جزر القمر","dataset_path":"emergency/km.json","coverage_status":"coming_soon"}
+  ]
+}

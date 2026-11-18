@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/directory.schema.json",
+  "title": "AmanRoid official organization directory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "country_code", "updated_at", "coverage_status", "organizations"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "country_code": {"type": "string", "enum": ["JO", "SA", "AE", "PS", "IQ", "EG", "KW", "QA", "BH", "OM", "LB", "SY", "YE", "LY", "TN", "DZ", "MA", "SD", "MR", "SO", "DJ", "KM"]},
+    "updated_at": {"type": "string", "format": "date-time", "pattern": "Z$", "maxLength": 40},
+    "coverage_status": {"type": "string", "enum": ["active", "coming_soon", "temporarily_unavailable"]},
+    "organizations": {"type": "array", "maxItems": 500, "items": {"$ref": "#/$defs/organization"}}
+  },
+  "$defs": {
+    "https": {"type": "string", "format": "uri", "pattern": "^https://[^\\s<>]+$", "maxLength": 2048},
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["organization_id", "country_code", "name_ar", "name_en", "category", "official_website", "official_domains", "support_phones", "fraud_phones", "official_emails", "app_store_links", "android_package_ids", "social_accounts", "verification_sources", "verified_at", "review_due_at", "publication_status"],
+      "properties": {
+        "organization_id": {"type": "string", "pattern": "^[a-z0-9-]{3,80}$"},
+        "country_code": {"type": "string", "enum": ["JO", "SA", "AE", "PS", "IQ", "EG", "KW", "QA", "BH", "OM", "LB", "SY", "YE", "LY", "TN", "DZ", "MA", "SD", "MR", "SO", "DJ", "KM"]},
+        "name_ar": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]+$"},
+        "name_en": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]+$"},
+        "category": {"type": "string", "enum": ["central_bank", "bank", "ewallet", "payment", "government", "government_services", "telecom", "postal", "cybersecurity_authority", "cybercrime_reporting", "ecommerce", "technology", "other"]},
+        "official_website": {"$ref": "#/$defs/https"},
+        "official_domains": {"type": "array", "minItems": 1, "maxItems": 20, "items": {"type": "string", "pattern": "^[a-z0-9.-]{1,253}$"}},
+        "support_phones": {"type": "array", "maxItems": 30, "items": {"type": "string", "pattern": "^\\+?[0-9 ()-]{6,25}$"}},
+        "fraud_phones": {"type": "array", "maxItems": 30, "items": {"type": "string", "pattern": "^\\+?[0-9 ()-]{6,25}$"}},
+        "official_emails": {"type": "array", "maxItems": 30, "items": {"type": "string", "pattern": "^[^<>\\s@]+@[^<>\\s@]+\\.[^<>\\s@]+$"}},
+        "app_store_links": {"type": "array", "maxItems": 20, "items": {"$ref": "#/$defs/https"}},
+        "android_package_ids": {"type": "array", "maxItems": 20, "items": {"type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9_]*(\\.[a-zA-Z][a-zA-Z0-9_]*)+$"}},
+        "social_accounts": {"type": "array", "maxItems": 30, "items": {"$ref": "#/$defs/https"}},
+        "verification_sources": {"type": "array", "minItems": 1, "maxItems": 20, "items": {"$ref": "#/$defs/https"}},
+        "verified_at": {"type": "string", "format": "date-time", "pattern": "Z$", "maxLength": 40},
+        "review_due_at": {"type": "string", "format": "date-time", "pattern": "Z$", "maxLength": 40},
+        "publication_status": {"type": "string", "enum": ["approved", "withdrawn"]}
+      }
+    }
+  }
+}

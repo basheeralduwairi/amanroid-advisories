@@ -11,6 +11,9 @@ paid AI service.
 - Jordan country feed: <https://basheeralduwairi.github.io/amanroid-advisories/feeds/jo.json>
 - Security data manifest: <https://basheeralduwairi.github.io/amanroid-advisories/security/security-data-manifest.json>
 - URL indicators: <https://basheeralduwairi.github.io/amanroid-advisories/security/url-indicators.json>
+- Official directory manifest: <https://basheeralduwairi.github.io/amanroid-advisories/directory/manifest.json>
+- Jordan official directory: <https://basheeralduwairi.github.io/amanroid-advisories/directory/jo.json>
+- Emergency guidance manifest: <https://basheeralduwairi.github.io/amanroid-advisories/emergency/manifest.json>
 - Schema: `schema.json`
 
 The production feed currently contains only the four Jordan advisories that were
@@ -49,6 +52,21 @@ script whenever the approved Jordan feed changes:
 ```bash
 python3 scripts/sync_country_feeds.py --write --updated-at 2026-11-18T00:00:00Z
 python3 scripts/validate_multicountry.py
+```
+
+The official directory and emergency datasets follow the same conservative
+publication rule. Jordan initially contains only the six organizations already
+present in the reviewed trusted-organization registry; phone numbers, email
+addresses, application IDs, and social accounts remain empty until each is
+independently verified. The other 21 country datasets are valid empty
+`coming_soon` documents. The emergency endpoint currently publishes generic
+playbook metadata and no unverified contact numbers.
+
+Validate these contracts with:
+
+```bash
+python3 scripts/validate_directory.py
+python3 scripts/validate_emergency.py
 ```
 
 ## Publication procedure
