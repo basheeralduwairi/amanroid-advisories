@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/security-data-manifest.schema.json",
+  "title": "AmanRoid security data manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "data_version", "updated_at", "indicators_path", "trusted_organizations_path", "psl_snapshot"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "data_version": {"type": "integer", "minimum": 1},
+    "updated_at": {"type": "string", "format": "date-time", "maxLength": 40},
+    "indicators_path": {"type": "string", "const": "security/url-indicators.json"},
+    "trusted_organizations_path": {"type": "string", "const": "security/trusted-organizations.json"},
+    "psl_snapshot": {"type": "string", "minLength": 1, "maxLength": 100}
+  }
+}

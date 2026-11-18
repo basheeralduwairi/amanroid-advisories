@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "data_version": 1,
+  "updated_at": "2026-11-18T00:00:00Z",
+  "indicators_path": "security/url-indicators.json",
+  "trusted_organizations_path": "security/trusted-organizations.json",
+  "psl_snapshot": "2026-11-18-amanroid-1"
+}

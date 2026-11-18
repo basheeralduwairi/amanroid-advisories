@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/url-indicators.schema.json",
+  "title": "AmanRoid approved URL threat indicators",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "feed_name", "language", "updated_at", "indicators"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "feed_name": {"type": "string", "minLength": 1, "maxLength": 160},
+    "language": {"type": "string", "const": "ar"},
+    "updated_at": {"type": "string", "format": "date-time", "maxLength": 40},
+    "indicators": {
+      "type": "array",
+      "maxItems": 5000,
+      "items": {"$ref": "#/$defs/indicator"}
+    }
+  },
+  "$defs": {
+    "timestamp": {"type": "string", "format": "date-time", "maxLength": 40},
+    "indicator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "indicator_type", "value", "category", "confidence",
+        "approval_status", "withdrawn", "evidence_source"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^AMANROID-URL-[0-9]{4}-[0-9]{3,}$", "maxLength": 80},
+        "indicator_type": {"type": "string", "enum": ["exact_url", "hostname", "domain"]},
+        "value": {"type": "string", "minLength": 1, "maxLength": 4096, "pattern": "^[^<>\\r\\n\\t]+$"},
+        "category": {
+          "type": "string",
+          "enum": ["phishing", "banking_fraud", "ewallet_fraud", "impersonation", "malicious_apps", "account_takeover", "investment_fraud", "shopping_fraud", "employment_fraud", "ai_fraud", "identity_theft", "other"]
+        },
+        "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+        "evidence_source": {"type": "string", "format": "uri", "pattern": "^https://[^\\s<>]+$", "maxLength": 2048},
+        "first_observed_at": {"$ref": "#/$defs/timestamp"},
+        "last_observed_at": {"$ref": "#/$defs/timestamp"},
+        "expires_at": {"$ref": "#/$defs/timestamp"},
+        "review_due_at": {"$ref": "#/$defs/timestamp"},
+        "advisory_reference": {"type": "string", "pattern": "^AMANROID-[0-9]{4}-[0-9]{2}-[0-9]{3,}$", "maxLength": 64},
+        "approval_status": {"type": "string", "enum": ["draft", "approved", "rejected", "withdrawn"]},
+        "withdrawn": {"type": "boolean"}
+      }
+    }
+  }
+}
