@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/trusted-organizations.schema.json",
+  "title": "AmanRoid verified organization registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "updated_at", "organizations"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "updated_at": {"type": "string", "format": "date-time", "maxLength": 40},
+    "organizations": {"type": "array", "maxItems": 500, "items": {"$ref": "#/$defs/organization"}}
+  },
+  "$defs": {
+    "timestamp": {"type": "string", "format": "date-time", "maxLength": 40},
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["organization_id", "name_ar", "name_en", "official_domains", "aliases", "countries", "category", "verification_source", "verified_at", "review_due_at"],
+      "properties": {
+        "organization_id": {"type": "string", "pattern": "^[a-z0-9-]{3,80}$"},
+        "name_ar": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]+$"},
+        "name_en": {"type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]+$"},
+        "official_domains": {"type": "array", "minItems": 1, "maxItems": 20, "items": {"type": "string", "pattern": "^[a-z0-9.-]{1,253}$"}},
+        "aliases": {"type": "array", "maxItems": 30, "items": {"type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[^<>]+$"}},
+        "countries": {"type": "array", "minItems": 1, "maxItems": 22, "items": {"type": "string", "pattern": "^(ALL|JO|SA|AE|PS|IQ|EG|KW|QA|BH|OM|LB|SY|YE|LY|TN|DZ|MA|SD|MR|SO|DJ|KM)$"}},
+        "category": {"type": "string", "enum": ["bank", "central_bank", "government", "government_services", "telecom", "postal", "payment", "ecommerce", "technology", "other"]},
+        "verification_source": {"type": "string", "format": "uri", "pattern": "^https://[^\\s<>]+$", "maxLength": 2048},
+        "verified_at": {"$ref": "#/$defs/timestamp"},
+        "review_due_at": {"$ref": "#/$defs/timestamp"}
+      }
+    }
+  }
+}

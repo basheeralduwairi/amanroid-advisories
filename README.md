@@ -9,6 +9,8 @@ paid AI service.
 - JSON feed: <https://basheeralduwairi.github.io/amanroid-advisories/advisories.json>
 - Country manifest: <https://basheeralduwairi.github.io/amanroid-advisories/countries.json>
 - Jordan country feed: <https://basheeralduwairi.github.io/amanroid-advisories/feeds/jo.json>
+- Security data manifest: <https://basheeralduwairi.github.io/amanroid-advisories/security/security-data-manifest.json>
+- URL indicators: <https://basheeralduwairi.github.io/amanroid-advisories/security/url-indicators.json>
 - Schema: `schema.json`
 
 The production feed currently contains only the four Jordan advisories that were
@@ -24,6 +26,18 @@ initialization. The other country feeds are valid empty feeds with
 `coming_soon` coverage and do not claim that the country is monitored.
 `feeds/regional.json` is reserved for expert-reviewed advisories that apply to
 more than one country.
+
+## Offline URL security data
+
+The public security directory is deliberately conservative. `url-indicators.json`
+currently contains an accurate empty list; no synthetic or unreviewed malicious
+domains are published. Future entries require an approved permanent ID, an
+HTTPS evidence source, a confidence level, observation and review dates, and an
+explicit non-withdrawn approval. `trusted-organizations.json` is a separate
+reviewed registry used to prioritize brand-impersonation checks; it does not
+declare an official website safe. The mobile app keeps the last-known-good
+security data locally and rejects malformed, oversized, stale, withdrawn, or
+unapproved indicators.
 
 The Android application consumes the manifest over HTTPS, validates relative
 feed paths against this GitHub Pages origin, and keeps separate last-known-good

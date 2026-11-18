@@ -14,6 +14,7 @@ from validate_candidate import validate as validate_candidate  # noqa: E402
 from validate_feed import validate as validate_feed  # noqa: E402
 from validate_multicountry import validate_manifest  # noqa: E402
 from sync_country_feeds import COUNTRIES, check as check_country_sync  # noqa: E402
+from validate_security_data import validate_indicators, validate_manifest as validate_security_manifest, validate_organizations  # noqa: E402
 
 
 def advisory(review_status="approved"):
@@ -165,6 +166,37 @@ class PipelineTests(unittest.TestCase):
             json.loads((ROOT / "feeds/regional.json").read_text(encoding="utf-8"))["advisories"],
             [],
         )
+
+    def test_public_security_data_is_valid_and_has_no_unreviewed_indicators(self):
+        self.assertEqual(validate_indicators(), [])
+        self.assertEqual(validate_organizations(), [])
+        self.assertEqual(validate_security_manifest(), [])
+
+    def test_security_validator_rejects_unapproved_public_indicator(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            data = {
+                "schema_version": 1,
+                "feed_name": "test",
+                "language": "ar",
+                "updated_at": "2026-11-18T00:00:00Z",
+                "indicators": [{
+                    "id": "AMANROID-URL-2026-001",
+                    "indicator_type": "domain",
+                    "value": "example.test",
+                    "category": "phishing",
+                    "confidence": "high",
+                    "approval_status": "draft",
+                    "withdrawn": False,
+                    "evidence_source": "https://example.invalid/evidence"
+                }]
+            }
+            self.write(folder / "data.json", data)
+            errors = []
+            for item in data["indicators"]:
+                if item["approval_status"] != "approved":
+                    errors.append(f"public indicator must be approved: {item['id']}")
+            self.assertTrue(errors)
 
 
 if __name__ == "__main__":

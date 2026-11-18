@@ -39,3 +39,18 @@ Feed text is rendered as plain text. Source links are opened only after an
 explicit user action and native allowlist validation; the app never
 automatically follows a URL from the feed. Private keys, enrollment signatures,
 scan results, and personal data never enter this request or cache.
+
+## Offline URL engine data
+
+The URL engine uses the same static Pages origin for optional, read-only
+security data:
+
+- Manifest: `https://basheeralduwairi.github.io/amanroid-advisories/security/security-data-manifest.json`
+- Approved indicators: `https://basheeralduwairi.github.io/amanroid-advisories/security/url-indicators.json`
+- Verified organization registry: `https://basheeralduwairi.github.io/amanroid-advisories/security/trusted-organizations.json`
+
+These requests never include the URL being analyzed. A mobile client must
+validate `schema_version`, enforce the payload limit, accept only approved and
+non-withdrawn records, and replace its local cache only after complete
+validation. An empty indicator list is valid and means only that no reviewed
+local indicators are currently published.

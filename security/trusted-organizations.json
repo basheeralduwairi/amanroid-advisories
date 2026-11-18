@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-18T00:00:00Z",
+  "organizations": [
+    {
+      "organization_id": "jo-central-bank",
+      "name_ar": "البنك المركزي الأردني",
+      "name_en": "Central Bank of Jordan",
+      "official_domains": ["cbj.gov.jo"],
+      "aliases": ["cbj", "centralbank", "البنك المركزي"],
+      "countries": ["JO"],
+      "category": "central_bank",
+      "verification_source": "https://www.cbj.gov.jo/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "jo-government-gate",
+      "name_ar": "بوابة الأردن",
+      "name_en": "Jordan Gate",
+      "official_domains": ["jordan.gov.jo"],
+      "aliases": ["jordan", "government", "حكومة", "الأردن"],
+      "countries": ["JO"],
+      "category": "government",
+      "verification_source": "https://jordan.gov.jo/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "jo-bank-of-jordan",
+      "name_ar": "بنك الأردن",
+      "name_en": "Bank of Jordan",
+      "official_domains": ["bankofjordan.com"],
+      "aliases": ["bank of jordan", "bankofjordan", "بنك الأردن"],
+      "countries": ["JO"],
+      "category": "bank",
+      "verification_source": "https://cbj.gov.jo/ar/Pages/Bankingsectorguide",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "jo-capital-bank",
+      "name_ar": "كابيتال بنك",
+      "name_en": "Capital Bank of Jordan",
+      "official_domains": ["capitalbank.jo"],
+      "aliases": ["capital bank", "capitalbank", "كابيتال بنك"],
+      "countries": ["JO"],
+      "category": "bank",
+      "verification_source": "https://www.capitalbank.jo/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "jo-orange",
+      "name_ar": "أورنج الأردن",
+      "name_en": "Orange Jordan",
+      "official_domains": ["orange.jo"],
+      "aliases": ["orange", "أورنج"],
+      "countries": ["JO"],
+      "category": "telecom",
+      "verification_source": "https://orange.jo/en/corporate/about-us",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "jo-umniah",
+      "name_ar": "أمنية",
+      "name_en": "Umniah",
+      "official_domains": ["umniah.com"],
+      "aliases": ["umniah", "أمنية"],
+      "countries": ["JO"],
+      "category": "telecom",
+      "verification_source": "https://www.umniah.com/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "global-google",
+      "name_ar": "Google",
+      "name_en": "Google",
+      "official_domains": ["google.com"],
+      "aliases": ["google"],
+      "countries": ["ALL"],
+      "category": "technology",
+      "verification_source": "https://www.google.com/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "global-microsoft",
+      "name_ar": "Microsoft",
+      "name_en": "Microsoft",
+      "official_domains": ["microsoft.com"],
+      "aliases": ["microsoft", "مايكروسوفت"],
+      "countries": ["ALL"],
+      "category": "technology",
+      "verification_source": "https://www.microsoft.com/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "global-apple",
+      "name_ar": "Apple",
+      "name_en": "Apple",
+      "official_domains": ["apple.com"],
+      "aliases": ["apple"],
+      "countries": ["ALL"],
+      "category": "technology",
+      "verification_source": "https://www.apple.com/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    },
+    {
+      "organization_id": "global-paypal",
+      "name_ar": "PayPal",
+      "name_en": "PayPal",
+      "official_domains": ["paypal.com"],
+      "aliases": ["paypal"],
+      "countries": ["ALL"],
+      "category": "payment",
+      "verification_source": "https://www.paypal.com/",
+      "verified_at": "2026-11-18T00:00:00Z",
+      "review_due_at": "2027-05-18T00:00:00Z"
+    }
+  ]
+}
