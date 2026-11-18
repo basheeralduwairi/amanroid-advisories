@@ -3,30 +3,35 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="مركز التحذيرات الأمنية المراجعة يدوياً من AmanRoid للأردن.">
+    <meta name="description" content="مركز التحذيرات الأمنية العربي من AmanRoid.">
     <title>مركز التحذيرات الأمنية — AmanRoid</title>
     <style>
-      :root { color-scheme: light; --ink:#172b35; --muted:#61717c; --teal:#087f70; --dark:#075c55; --bg:#f1f6f4; --card:#fff; --line:#dce7e3; --warn:#d99a24; --bad:#c94040; --blue:#4f7dc3; }
+      :root { color-scheme: light; --ink:#172b35; --muted:#61717c; --teal:#087f70; --dark:#075c55; --bg:#f1f6f4; --card:#fff; --line:#dce7e3; --warn:#d99a24; --bad:#c94040; --blue:#4f7dc3; --mint:#ddf4ec; }
       * { box-sizing:border-box; }
       body { margin:0; background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif; line-height:1.65; }
       header { color:#fff; background:linear-gradient(135deg,var(--dark),var(--teal)); }
-      .wrap { width:min(1100px,calc(100% - 32px)); margin:auto; }
-      header .wrap { padding:42px 0 36px; }
-      .eyebrow { color:#bde6da; font-size:.9rem; font-weight:800; letter-spacing:.02em; }
+      .wrap { width:min(1120px,calc(100% - 32px)); margin:auto; }
+      header .wrap { padding:34px 0 30px; }
+      .eyebrow { color:#bde6da; font-size:.9rem; font-weight:800; }
       h1 { margin:4px 0 10px; font-size:clamp(1.85rem,5vw,3.2rem); line-height:1.2; }
-      h2 { margin:0; font-size:1.35rem; }
-      .lead { max-width:720px; margin:0; color:#e2f5ee; }
-      main { padding:24px 0 56px; }
-      .toolbar,.summary,.card { background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:0 6px 18px #075c550d; }
-      .toolbar { display:grid; grid-template-columns:2fr 1fr 1fr auto; gap:10px; padding:14px; }
+      h2 { margin:0; font-size:1.3rem; }
+      .lead { max-width:760px; margin:0; color:#e2f5ee; }
+      main { padding:22px 0 56px; }
+      .toolbar,.summary,.card,.country-panel { background:var(--card); border:1px solid var(--line); border-radius:20px; box-shadow:0 6px 18px #075c550d; }
+      .toolbar { display:grid; grid-template-columns:1.8fr 1fr 1fr auto; gap:10px; padding:14px; }
       input,select,button { min-height:46px; border:1px solid var(--line); border-radius:12px; padding:0 13px; font:inherit; color:var(--ink); background:#fff; }
       input:focus,select:focus,button:focus { outline:3px solid #087f7033; outline-offset:2px; }
       button { cursor:pointer; background:var(--teal); color:#fff; border-color:var(--teal); font-weight:800; }
-      button.secondary { background:#fff; color:var(--teal); }
+      .country-panel { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:center; padding:16px; margin:16px 0; }
+      .country-panel p { margin:3px 0 0; color:var(--muted); font-size:.92rem; }
+      .coverage { border-radius:14px; padding:10px 12px; margin-top:8px; background:var(--mint); color:var(--dark); font-weight:800; }
+      .coverage.coming { background:#fff8e8; color:#8a6417; }
       .summary { display:flex; justify-content:space-between; gap:18px; align-items:center; padding:16px 18px; margin:16px 0; }
       .summary p { margin:3px 0 0; color:var(--muted); font-size:.92rem; }
       .status { color:var(--teal); font-weight:800; }
       .status.error { color:var(--bad); }
+      .section-title { display:flex; justify-content:space-between; gap:12px; align-items:baseline; margin:22px 0 10px; }
+      .section-title p { color:var(--muted); margin:0; font-size:.9rem; }
       .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
       .card { padding:18px; }
       .card h3 { margin:0 0 6px; font-size:1.12rem; }
@@ -35,75 +40,76 @@
       .badge { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:#eef5f3; color:var(--muted); font-size:.78rem; font-weight:800; }
       .badge.high,.badge.critical { background:#fff0ed; color:var(--bad); }
       .badge.medium { background:#fff8e8; color:#996b10; }
-      .badge.low { background:#eaf6f2; color:var(--good,#16835d); }
+      .badge.low { background:#eaf6f2; color:#16835d; }
       details { margin-top:10px; border-top:1px solid var(--line); padding-top:10px; }
       summary { cursor:pointer; color:var(--teal); font-weight:800; }
       ul { margin:6px 0; padding-right:22px; }
       .source { display:block; overflow-wrap:anywhere; margin-top:6px; color:var(--blue); }
-      .empty { text-align:center; padding:40px 18px; color:var(--muted); }
-      .empty strong { display:block; color:var(--ink); font-size:1.15rem; margin-bottom:5px; }
+      .empty { text-align:center; padding:34px 18px; color:var(--muted); }
+      .empty strong { display:block; color:var(--ink); font-size:1.1rem; margin-bottom:5px; }
       footer { border-top:1px solid var(--line); padding:20px 0 35px; color:var(--muted); font-size:.88rem; }
-      @media (max-width:720px) { .toolbar { grid-template-columns:1fr; } .summary { display:block; } .summary button { margin-top:12px; width:100%; } header .wrap { padding-top:30px; } }
+      @media (max-width:720px) { .toolbar,.country-panel { grid-template-columns:1fr; } .summary { display:block; } .summary button { margin-top:12px; width:100%; } header .wrap { padding-top:28px; } }
     </style>
   </head>
   <body>
     <header><div class="wrap">
-      <div class="eyebrow">AmanRoid • الأردن</div>
+      <div class="eyebrow">AmanRoid • منصة عربية متعددة الدول</div>
       <h1>مركز التحذيرات الأمنية</h1>
       <p class="lead">تحذيرات مختارة ومراجعة بشرياً، مع الحفاظ على المصدر الأصلي وتاريخ الدليل. لا يعني غياب التحذيرات غياب المخاطر.</p>
     </div></header>
     <main class="wrap">
+      <section class="country-panel" aria-label="اختيار الدولة">
+        <div><h2>التحذيرات المتعلقة بالدولة</h2><p>اختر الدولة لعرض التحذيرات المحلية والتحذيرات العربية المشتركة المنطبقة.</p></div>
+        <div><label for="country">الدولة</label><select id="country" aria-label="اختر الدولة"></select><div id="coverage" class="coverage">جارٍ تحميل حالة التغطية...</div></div>
+      </section>
       <section class="toolbar" aria-label="أدوات البحث والتصفية">
         <input id="search" type="search" placeholder="ابحث في التحذيرات" aria-label="ابحث في التحذيرات">
         <select id="category" aria-label="التصنيف"><option value="">كل التصنيفات</option></select>
         <select id="severity" aria-label="الخطورة"><option value="">كل درجات الخطورة</option></select>
-        <button id="refresh" type="button">تحديث</button>
+        <button id="refresh" type="button">تحديث الموجز</button>
       </section>
       <section class="summary" aria-live="polite">
-        <div><h2 id="count">جارٍ تحميل التحذيرات...</h2><p id="times">سيتم عرض وقت النشر ووقت آخر جلب ناجح بعد التحقق من الموجز.</p></div>
+        <div><h2 id="count">جارٍ تحميل التحذيرات...</h2><p id="times">سيظهر وقت النشر ووقت آخر جلب ناجح بعد التحقق من الموجز.</p></div>
         <div id="status" class="status">جارٍ الاتصال بالموجز...</div>
       </section>
-      <section id="list" class="grid" aria-live="polite"></section>
+      <section><div class="section-title"><h2>التحذيرات المحلية</h2><p id="local-note"></p></div><section id="local-list" class="grid" aria-live="polite"></section></section>
+      <section><div class="section-title"><h2>التحذيرات العربية المشتركة</h2><p>المصادر الإقليمية التي تنطبق جغرافياً</p></div><section id="regional-list" class="grid" aria-live="polite"></section></section>
     </main>
     <footer><div class="wrap">لا يتطلب الموقع تسجيل دخول ولا يجمع بيانات شخصية. تُفتح المصادر الأصلية فقط بعد اختيار المستخدم، وتبقى محتوياتها خارج سيطرة AmanRoid.</div></footer>
     <script>
-      const state = { feed: null, retrievedAt: null };
-      const labels = {
-        categories: { phishing:'التصيد الإلكتروني', banking_fraud:'الاحتيال المصرفي', ewallet_fraud:'احتيال المحافظ الإلكترونية', impersonation:'انتحال الصفة', malicious_apps:'تطبيقات خبيثة', account_takeover:'الاستيلاء على الحسابات', investment_fraud:'الاحتيال الاستثماري', shopping_fraud:'احتيال التسوق', employment_fraud:'احتيال التوظيف', ai_fraud:'احتيال الذكاء الاصطناعي', identity_theft:'سرقة الهوية', other:'أخرى' },
-        severity: { critical:'حرجة', high:'مرتفعة', medium:'متوسطة', low:'منخفضة' },
-        status: { confirmed_active:'حملة نشطة مؤكدة', recently_reported:'تم الإبلاغ عنها مؤخراً', suspected_active:'نشاط محتمل', historical:'تحذير سابق', resolved:'حملة منتهية' }
-      };
+      const codes = ['JO','SA','AE','PS','IQ','EG','KW','QA','BH','OM','LB','SY','YE','LY','TN','DZ','MA','SD','MR','SO','DJ','KM'];
+      const flags = {JO:'🇯🇴',SA:'🇸🇦',AE:'🇦🇪',PS:'🇵🇸',IQ:'🇮🇶',EG:'🇪🇬',KW:'🇰🇼',QA:'🇶🇦',BH:'🇧🇭',OM:'🇴🇲',LB:'🇱🇧',SY:'🇸🇾',YE:'🇾🇪',LY:'🇱🇾',TN:'🇹🇳',DZ:'🇩🇿',MA:'🇲🇦',SD:'🇸🇩',MR:'🇲🇷',SO:'🇸🇴',DJ:'🇩🇯',KM:'🇰🇲'};
+      const names = {JO:'الأردن',SA:'السعودية',AE:'الإمارات',PS:'فلسطين',IQ:'العراق',EG:'مصر',KW:'الكويت',QA:'قطر',BH:'البحرين',OM:'سلطنة عمان',LB:'لبنان',SY:'سوريا',YE:'اليمن',LY:'ليبيا',TN:'تونس',DZ:'الجزائر',MA:'المغرب',SD:'السودان',MR:'موريتانيا',SO:'الصومال',DJ:'جيبوتي',KM:'جزر القمر'};
+      const labels = {categories:{phishing:'التصيد الإلكتروني',banking_fraud:'الاحتيال المصرفي',ewallet_fraud:'احتيال المحافظ الإلكترونية',impersonation:'انتحال الصفة',malicious_apps:'التطبيقات الضارة',account_takeover:'الاستيلاء على الحسابات',investment_fraud:'احتيال الاستثمار',shopping_fraud:'احتيال التسوق',employment_fraud:'احتيال التوظيف',ai_fraud:'احتيال الذكاء الاصطناعي',identity_theft:'سرقة الهوية',other:'أخرى'},severity:{critical:'حرجة',high:'مرتفعة',medium:'متوسطة',low:'منخفضة'},status:{confirmed_active:'حملة نشطة مؤكدة',recently_reported:'تم الإبلاغ عنها مؤخراً',suspected_active:'نشاط محتمل',historical:'تحذير سابق',resolved:'حملة منتهية'}};
+      const fallback = {schema_version:1,config_version:1,updated_at:'2026-11-18T00:00:00Z',default_country:'JO',regional_feed:'feeds/regional.json',countries:codes.map(code=>({code,name_ar:names[code],enabled:code==='JO',feed_path:`feeds/${code.toLowerCase()}.json`,coverage_status:code==='JO'?'active':'coming_soon',last_reviewed_at:code==='JO'?'2026-11-18T00:00:00Z':null}))};
+      const state = {manifest:fallback, country:'JO', local:[], regional:[], retrieved:{}, token:0};
       const byId = id => document.getElementById(id);
-      const text = (tag, value, className='') => { const node = document.createElement(tag); node.textContent = value ?? ''; if (className) node.className = className; return node; };
-      const dateText = value => { try { return new Intl.DateTimeFormat('ar-JO',{dateStyle:'medium',timeZone:'UTC'}).format(new Date(value)); } catch (_) { return value || 'غير متوفر'; } };
-      const safeSource = value => { try { const u = new URL(value); return u.protocol === 'https:' && !u.username && !u.password; } catch (_) { return false; } };
-      const makeList = (title, items) => { const box = document.createElement('div'); box.append(text('strong', title)); const list = document.createElement('ul'); for (const item of items || []) list.append(text('li', item)); box.append(list); return box; };
-      function card(advisory) {
-        const article = document.createElement('article'); article.className = 'card';
-        article.append(text('h3', advisory.title)); article.append(text('p', advisory.summary));
-        const meta = document.createElement('div'); meta.className = 'meta';
-        meta.append(text('span', labels.categories[advisory.category] || advisory.category, 'badge'));
-        meta.append(text('span', labels.severity[advisory.severity] || advisory.severity, `badge ${advisory.severity}`));
-        meta.append(text('span', labels.status[advisory.status] || advisory.status, 'badge'));
-        article.append(meta);
-        article.append(text('p', `آخر دليل: ${dateText(advisory.last_observed_at)} • نُشر: ${dateText(advisory.published_at)}`));
-        const details = document.createElement('details'); details.append(text('summary','عرض التفاصيل والتوصيات'));
-        details.append(text('p', advisory.description)); details.append(makeList('الوقاية', advisory.prevention)); details.append(makeList('إذا تعرضت للاحتيال', advisory.victim_actions));
-        const sourceHeading = text('strong','المصادر الأصلية'); details.append(sourceHeading);
-        for (const source of advisory.sources || []) { const row = document.createElement('div'); row.append(text('div', `${source.name} • ${dateText(source.published_at)}`)); row.append(text('p', source.evidence_summary)); if (safeSource(source.url)) { const link = document.createElement('a'); link.className='source'; link.href=source.url; link.target='_blank'; link.rel='noopener noreferrer'; link.textContent='فتح المصدر الأصلي'; row.append(link); } details.append(row); }
+      const text = (tag,value,className='') => { const node=document.createElement(tag); node.textContent=value??''; if(className) node.className=className; return node; };
+      const dateText = value => { try { return new Intl.DateTimeFormat('ar-JO',{dateStyle:'medium',timeZone:'UTC'}).format(new Date(value)); } catch (_) { return value||'غير متوفر'; } };
+      const safePath = value => typeof value==='string' && /^feeds\/[A-Za-z0-9._/-]+\.json$/.test(value) && !value.includes('..');
+      const validFeed = (data, expected) => data && data.schema_version===1 && typeof data.country==='string' && (expected==='REGIONAL'?data.country==='REGIONAL':data.country===expected) && Array.isArray(data.advisories) && data.advisories.every(item=>item.review_status==='approved' && typeof item.id==='string');
+      const safeSource = value => { try { const u=new URL(value); return u.protocol==='https:' && !u.username && !u.password; } catch (_) { return false; } };
+      const makeList = (title,items) => { const box=document.createElement('div'); box.append(text('strong',title)); const list=document.createElement('ul'); for(const item of items||[]) list.append(text('li',item)); box.append(list); return box; };
+      function advisoryCard(advisory) {
+        const article=document.createElement('article'); article.className='card'; article.append(text('h3',advisory.title)); article.append(text('p',advisory.summary));
+        const meta=document.createElement('div'); meta.className='meta'; meta.append(text('span',labels.categories[advisory.category]||advisory.category,'badge')); meta.append(text('span',labels.severity[advisory.severity]||advisory.severity,`badge ${advisory.severity}`)); meta.append(text('span',labels.status[advisory.status]||advisory.status,'badge')); article.append(meta);
+        article.append(text('p',`آخر دليل: ${dateText(advisory.last_observed_at)} • نُشر: ${dateText(advisory.published_at)}`));
+        const details=document.createElement('details'); details.append(text('summary','عرض التفاصيل والتوصيات')); details.append(text('p',advisory.description)); details.append(makeList('الوقاية',advisory.prevention)); details.append(makeList('إذا تعرضت للاحتيال',advisory.victim_actions)); details.append(text('strong','المصادر الأصلية'));
+        for(const source of advisory.sources||[]) { const row=document.createElement('div'); row.append(text('div',`${source.name} • ${dateText(source.published_at)}`)); row.append(text('p',source.evidence_summary)); if(safeSource(source.url)){ const link=document.createElement('a'); link.className='source'; link.href=source.url; link.target='_blank'; link.rel='noopener noreferrer'; link.textContent='فتح المصدر الأصلي'; row.append(link); } details.append(row); }
         article.append(details); return article;
       }
-      function render() {
-        const list = byId('list'); list.replaceChildren(); const feed = state.feed || { advisories:[] }; const query = byId('search').value.trim().toLocaleLowerCase('ar'); const category = byId('category').value; const severity = byId('severity').value;
-        const items = (feed.advisories || []).filter(item => (!category || item.category === category) && (!severity || item.severity === severity) && (!query || `${item.title} ${item.summary} ${item.description}`.toLocaleLowerCase('ar').includes(query)));
-        byId('count').textContent = items.length ? `${items.length} تحذير/تحذيرات منشورة` : 'لا توجد تحذيرات منشورة حالياً';
-        byId('times').textContent = feed.updated_at ? `نُشر تحديث الموجز: ${dateText(feed.updated_at)} • آخر جلب ناجح: ${state.retrievedAt ? dateText(state.retrievedAt) : 'غير متوفر'}` : 'الموجز صالح لكنه لا يحتوي تحذيرات منشورة.';
-        if (!items.length) { const empty = document.createElement('div'); empty.className='card empty'; empty.append(text('strong','لا توجد نتائج منشورة')); empty.append(text('span','جرّب تغيير البحث أو الفلاتر. لا يُستنتج من ذلك عدم وجود تهديدات.')); list.append(empty); return; }
-        for (const item of items) list.append(card(item));
-      }
-      function populateFilters() { const items = state.feed?.advisories || []; const categories = [...new Set(items.map(x=>x.category))].sort(); const severities = [...new Set(items.map(x=>x.severity))].sort(); for (const [select, values, lookup] of [[byId('category'),categories,labels.categories],[byId('severity'),severities,labels.severity]]) { select.replaceChildren(text('option','',)); select.firstChild.value=''; select.firstChild.textContent=select.id==='category'?'كل التصنيفات':'كل درجات الخطورة'; for (const value of values) { const option=text('option',lookup[value]||value); option.value=value; select.append(option); } } }
-      async function load() { const status=byId('status'); status.textContent='جارٍ تحديث التحذيرات...'; status.className='status'; try { const response=await fetch('advisories.json',{cache:'no-cache',headers:{Accept:'application/json'}}); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data=await response.json(); if (!data || data.schema_version !== 1 || !Array.isArray(data.advisories)) throw new Error('Invalid feed'); state.feed=data; state.retrievedAt=new Date().toISOString(); localStorage.setItem('amanroid-last-retrieval',state.retrievedAt); populateFilters(); render(); status.textContent='تم تحديث التحذيرات بنجاح'; } catch (error) { status.textContent='تعذر تحديث التحذيرات'; status.className='status error'; if (state.feed) { render(); } else { byId('count').textContent='يتعذر تحميل الموجز'; byId('times').textContent='لا توجد نسخة سابقة في هذا المتصفح.'; } } }
-      for (const id of ['search','category','severity']) byId(id).addEventListener('input',render); byId('refresh').addEventListener('click',load); load();
+      function countryEntry(){ return state.manifest.countries.find(item=>item.code===state.country) || fallback.countries[0]; }
+      function populateCountries(){ const select=byId('country'); select.replaceChildren(); for(const item of state.manifest.countries){ const option=document.createElement('option'); option.value=item.code; option.textContent=`${flags[item.code]||'🌐'} ${item.name_ar}`; select.append(option); } select.value=state.country; }
+      function populateFilters(items){ const categories=[...new Set(items.map(item=>item.category))].sort(); const severities=[...new Set(items.map(item=>item.severity))].sort(); for(const [id,values,lookup,empty] of [['category',categories,labels.categories,'كل التصنيفات'],['severity',severities,labels.severity,'كل درجات الخطورة']]){ const select=byId(id); select.replaceChildren(); const first=text('option',empty); first.value=''; select.append(first); for(const value of values){ const option=text('option',lookup[value]||value); option.value=value; select.append(option); } } }
+      function filtered(items){ const query=byId('search').value.trim().toLocaleLowerCase('ar'); const category=byId('category').value; const severity=byId('severity').value; return items.filter(item=>(!category||item.category===category)&&(!severity||item.severity===severity)&&(!query||`${item.title} ${item.summary} ${item.description}`.toLocaleLowerCase('ar').includes(query))); }
+      function renderList(id,items,emptyTitle,emptyText){ const list=byId(id); list.replaceChildren(); const visible=filtered(items); if(!visible.length){ const empty=document.createElement('div'); empty.className='card empty'; empty.append(text('strong',emptyTitle)); empty.append(text('span',emptyText)); list.append(empty); return visible.length; } for(const item of visible) list.append(advisoryCard(item)); return visible.length; }
+      function render(){ const entry=countryEntry(); const all=[...state.local,...state.regional]; populateFilters(all); const localCount=renderList('local-list',state.local,'لا توجد تحذيرات محلية منشورة حالياً','لا يُستنتج من ذلك عدم وجود تهديدات في الدولة.'); const regionalCount=renderList('regional-list',state.regional,'لا توجد تحذيرات عربية مشتركة منشورة حالياً','قد تُنشر تحذيرات مشتركة بعد مراجعة المصادر وانطباقها جغرافياً.'); byId('count').textContent=`${localCount+regionalCount} تحذير/تحذيرات منشورة`; byId('times').textContent=`تحديث manifest: ${dateText(state.manifest.updated_at)} • آخر جلب ناجح: ${state.retrieved[state.country]||'غير متوفر'}`; byId('local-note').textContent=entry.coverage_status==='active'?'تغطية محلية مفعّلة':'التغطية المحلية قيد الإعداد'; const coverage=byId('coverage'); coverage.className=`coverage ${entry.coverage_status==='active'?'':'coming'}`; coverage.textContent=entry.coverage_status==='active'?`التغطية المحلية مفعّلة لـ${entry.name_ar}`:'نعمل على إضافة التحذيرات الأمنية الخاصة بهذه الدولة.'; }
+      async function fetchFeed(path,expected){ if(!safePath(path)) throw new Error('Unsafe feed path'); const cached=localStorage.getItem(`amanroid-feed-${expected}`); try{ const response=await fetch(path,{cache:'no-cache',headers:{Accept:'application/json'}}); if(!response.ok) throw new Error(`HTTP ${response.status}`); const data=await response.json(); if(!validFeed(data,expected)) throw new Error('Invalid feed'); localStorage.setItem(`amanroid-feed-${expected}`,JSON.stringify(data)); state.retrieved[expected]=new Date().toISOString(); return data.advisories; }catch(error){ if(cached){ const data=JSON.parse(cached); if(validFeed(data,expected)) return data.advisories; } throw error; } }
+      async function loadManifest(){ try{ const response=await fetch('countries.json',{cache:'no-cache',headers:{Accept:'application/json'}}); if(!response.ok) throw new Error(`HTTP ${response.status}`); const data=await response.json(); if(!data||data.schema_version!==1||!Array.isArray(data.countries)||data.countries.length!==22) throw new Error('Invalid manifest'); state.manifest=data; }catch(_){ byId('status').textContent='يتم استخدام إعداد الدول الآمن المدمج'; } populateCountries(); }
+      async function load(){ const token=++state.token; const entry=countryEntry(); byId('status').textContent='جارٍ تحديث التحذيرات...'; byId('status').className='status'; try{ const local=entry.coverage_status==='active'?await fetchFeed(entry.feed_path,state.country):[]; const regional=await fetchFeed(state.manifest.regional_feed,'REGIONAL'); if(token!==state.token) return; state.local=local; state.regional=regional.filter(item=>{ const scope=item.geographic_scope||'regional'; const affected=item.affected_countries||[]; return scope==='global'||(scope==='regional'&&(affected.length===0||affected.includes(state.country))); }); render(); byId('status').textContent='تم تحديث التحذيرات بنجاح'; }catch(error){ if(token!==state.token) return; byId('status').textContent='تعذر تحديث التحذيرات؛ يتم عرض آخر نسخة محفوظة إن وجدت'; byId('status').className='status error'; render(); } }
+      async function selectCountry(code){ if(!codes.includes(code)) return; state.country=code; localStorage.setItem('amanroid-country',code); state.local=[]; state.regional=[]; render(); await load(); }
+      byId('country').addEventListener('change',event=>selectCountry(event.target.value)); byId('refresh').addEventListener('click',load); for(const id of ['search','category','severity']) byId(id).addEventListener('input',render);
+      (async()=>{ await loadManifest(); const saved=localStorage.getItem('amanroid-country'); if(saved&&codes.includes(saved)) state.country=saved; populateCountries(); render(); await load(); })();
     </script>
   </body>
 </html>

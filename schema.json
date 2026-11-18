@@ -17,7 +17,10 @@
     "schema_version": { "type": "integer", "const": 1 },
     "feed_name": { "type": "string", "minLength": 1, "maxLength": 160 },
     "language": { "type": "string", "const": "ar" },
-    "country": { "type": "string", "const": "JO" },
+    "country": {
+      "type": "string",
+      "pattern": "^(JO|SA|AE|PS|IQ|EG|KW|QA|BH|OM|LB|SY|YE|LY|TN|DZ|MA|SD|MR|SO|DJ|KM|REGIONAL)$"
+    },
     "feed_version": { "type": "integer", "minimum": 1 },
     "updated_at": { "type": "string", "format": "date-time", "maxLength": 40 },
     "advisories": {
@@ -194,6 +197,22 @@
         "review_status": {
           "type": "string",
           "enum": ["draft", "approved", "rejected", "withdrawn"]
+        },
+        "geographic_scope": {
+          "type": "string",
+          "enum": ["country", "regional", "global"]
+        },
+        "affected_countries": {
+          "type": "array",
+          "maxItems": 22,
+          "items": {
+            "type": "string",
+            "pattern": "^(JO|SA|AE|PS|IQ|EG|KW|QA|BH|OM|LB|SY|YE|LY|TN|DZ|MA|SD|MR|SO|DJ|KM)$"
+          }
+        },
+        "source_country": {
+          "type": "string",
+          "pattern": "^(JO|SA|AE|PS|IQ|EG|KW|QA|BH|OM|LB|SY|YE|LY|TN|DZ|MA|SD|MR|SO|DJ|KM)$"
         }
       }
     }

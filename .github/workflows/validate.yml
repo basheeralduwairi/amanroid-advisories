@@ -5,7 +5,10 @@ on:
     branches: [main]
     paths:
       - 'advisories.json'
+      - 'countries.json'
+      - 'feeds/**'
       - 'schema.json'
+      - 'schemas/**'
       - 'index.html'
       - 'images/**'
       - 'scripts/**'
@@ -15,7 +18,10 @@ on:
   pull_request:
     paths:
       - 'advisories.json'
+      - 'countries.json'
+      - 'feeds/**'
       - 'schema.json'
+      - 'schemas/**'
       - 'index.html'
       - 'images/**'
       - 'scripts/**'
@@ -39,5 +45,7 @@ jobs:
         run: python -m pip install --requirement requirements-dev.txt
       - name: Validate public feed
         run: python scripts/validate_feed.py
+      - name: Validate multi-country manifest and feeds
+        run: python scripts/validate_multicountry.py
       - name: Run pipeline tests
         run: python -m unittest discover -s tests -v

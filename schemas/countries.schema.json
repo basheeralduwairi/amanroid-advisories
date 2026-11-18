@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://basheeralduwairi.github.io/amanroid-advisories/schemas/countries.schema.json",
+  "title": "AmanRoid Arabic country manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "config_version", "updated_at", "default_country", "countries", "regional_feed"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "config_version": { "type": "integer", "minimum": 1 },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "default_country": { "type": "string", "const": "JO" },
+    "regional_feed": { "type": "string", "pattern": "^feeds/[A-Za-z0-9._/-]+\\.json$" },
+    "countries": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "name_ar", "enabled", "feed_path", "coverage_status", "last_reviewed_at"],
+        "properties": {
+          "code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+          "name_ar": { "type": "string", "minLength": 2, "maxLength": 80 },
+          "enabled": { "type": "boolean" },
+          "feed_path": { "type": "string", "pattern": "^feeds/[A-Za-z0-9._/-]+\\.json$" },
+          "coverage_status": { "type": "string", "enum": ["active", "coming_soon", "temporarily_unavailable"] },
+          "last_reviewed_at": { "type": ["string", "null"], "format": "date-time" }
+        }
+      }
+    }
+  }
+}
