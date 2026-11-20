@@ -157,6 +157,7 @@ class PipelineTests(unittest.TestCase):
             json.loads((ROOT / "feeds/jo.json").read_text(encoding="utf-8")),
             json.loads((ROOT / "advisories.json").read_text(encoding="utf-8")),
         )
+        manifest = json.loads((ROOT / "countries.json").read_text(encoding="utf-8"))
         active_codes = {entry["code"] for entry in manifest["countries"] if entry["enabled"]}
         self.assertEqual(active_codes, {"JO", "SA"})
         self.assertEqual(
