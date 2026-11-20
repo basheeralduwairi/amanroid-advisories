@@ -52,10 +52,14 @@ def validate_manifest(path: Path) -> list[str]:
                     parse_timestamp(reviewed, f"{code}.last_reviewed_at")
                 except ValueError as error:
                     errors.append(str(error))
-            if code == "JO" and (item.get("enabled") is not True or item.get("coverage_status") != "active"):
-                errors.append("Jordan must be the only active country initially")
-            if code != "JO" and item.get("enabled") is not False:
-                errors.append(f"{code} must not be enabled initially")
+            enabled = item.get("enabled") is True
+            active = item.get("coverage_status") == "active"
+            if enabled != active:
+                errors.append(f"{code}.enabled must match active coverage_status")
+            if active and reviewed is None:
+                errors.append(f"{code}.last_reviewed_at is required for active coverage")
+            if code == "JO" and not active:
+                errors.append("Jordan must remain active")
     return errors
 
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "config_version": 1,
+  "config_version": 2,
   "updated_at": "2026-11-18T08:15:45Z",
   "default_country": "JO",
   "regional_feed": "feeds/regional.json",
@@ -16,10 +16,10 @@
     {
       "code": "SA",
       "name_ar": "السعودية",
-      "enabled": false,
+      "enabled": true,
       "feed_path": "feeds/sa.json",
-      "coverage_status": "coming_soon",
-      "last_reviewed_at": null
+      "coverage_status": "active",
+      "last_reviewed_at": "2026-11-20T19:25:00Z"
     },
     {
       "code": "AE",
