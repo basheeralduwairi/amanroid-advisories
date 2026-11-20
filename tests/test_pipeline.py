@@ -49,7 +49,7 @@ def advisory(review_status="approved"):
 def feed(items=None):
     return {
         "schema_version": 1,
-        "feed_name": "مركز التحذيرات الأمنية — AmanRoid",
+        "feed_name": "مركز التحذيرات الأمنية — AmanSense",
         "language": "ar",
         "country": "JO",
         "feed_version": 1,
@@ -139,7 +139,7 @@ class PipelineTests(unittest.TestCase):
         )
         self.assertNotEqual(result.returncode, 0)
 
-    def test_manifest_contains_all_supported_countries_with_only_jordan_active(self):
+    def test_manifest_contains_all_supported_countries_with_active_jordan_and_saudi(self):
         manifest = json.loads((ROOT / "countries.json").read_text(encoding="utf-8"))
         self.assertEqual(
             {entry["code"] for entry in manifest["countries"]},
@@ -147,7 +147,7 @@ class PipelineTests(unittest.TestCase):
         )
         self.assertEqual(
             [entry["code"] for entry in manifest["countries"] if entry["enabled"]],
-            ["JO"],
+            ["JO", "SA"],
         )
         self.assertEqual(validate_manifest(ROOT / "countries.json"), [])
 
@@ -157,8 +157,14 @@ class PipelineTests(unittest.TestCase):
             json.loads((ROOT / "feeds/jo.json").read_text(encoding="utf-8")),
             json.loads((ROOT / "advisories.json").read_text(encoding="utf-8")),
         )
+        active_codes = {entry["code"] for entry in manifest["countries"] if entry["enabled"]}
+        self.assertEqual(active_codes, {"JO", "SA"})
+        self.assertEqual(
+            len(json.loads((ROOT / "feeds/sa.json").read_text(encoding="utf-8"))["advisories"]),
+            5,
+        )
         for code, _ in COUNTRIES:
-            if code == "JO":
+            if code in active_codes:
                 continue
             feed_path = ROOT / f"feeds/{code.lower()}.json"
             self.assertEqual(json.loads(feed_path.read_text(encoding="utf-8"))["advisories"], [])
