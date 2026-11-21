@@ -45,4 +45,6 @@
 - تم رفع إصدارات خلاصات الدول الأربع من 1 إلى 2.
 - بقيت خلاصتا JO وSA، والموجز الإقليمي، والموجز legacy دون تغيير.
 - لا يتضمن هذا التغيير أي كود في تطبيق AmanSense أو أي APK.
-- ستكتمل بيانات commit وPR ونتيجة GitHub Actions بعد تنفيذ النشر عبر الفرع المخصص.
+- تم إنشاء [PR #9](https://github.com/basheeralduwairi/amanroid-advisories/pull/9) وتشغيل التحقق بنجاح في [run 44907572174](https://github.com/basheeralduwairi/amanroid-advisories/actions/runs/44907572174).
+- تم الدمج في `main` بالـ commit `0b4ad817ae272ba8adaa632ecb0cf65f372365f7`، ثم نجح تحقق `main` في [run 44907632548](https://github.com/basheeralduwairi/amanroid-advisories/actions/runs/44907632548).
+- اكتمل نشر GitHub Pages في [run 44907649160](https://github.com/basheeralduwairi/amanroid-advisories/actions/runs/44907649160).
