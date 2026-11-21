@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "config_version": 2,
-  "updated_at": "2026-11-18T08:15:45Z",
+  "config_version": 3,
+  "updated_at": "2026-11-21T13:05:26Z",
   "default_country": "JO",
   "regional_feed": "feeds/regional.json",
   "countries": [
@@ -24,10 +24,10 @@
     {
       "code": "AE",
       "name_ar": "الإمارات",
-      "enabled": false,
+      "enabled": true,
       "feed_path": "feeds/ae.json",
-      "coverage_status": "coming_soon",
-      "last_reviewed_at": null
+      "coverage_status": "active",
+      "last_reviewed_at": "2026-11-21T13:05:26Z"
     },
     {
       "code": "PS",
@@ -48,10 +48,10 @@
     {
       "code": "EG",
       "name_ar": "مصر",
-      "enabled": false,
+      "enabled": true,
       "feed_path": "feeds/eg.json",
-      "coverage_status": "coming_soon",
-      "last_reviewed_at": null
+      "coverage_status": "active",
+      "last_reviewed_at": "2026-11-21T13:05:26Z"
     },
     {
       "code": "KW",
@@ -64,10 +64,10 @@
     {
       "code": "QA",
       "name_ar": "قطر",
-      "enabled": false,
+      "enabled": true,
       "feed_path": "feeds/qa.json",
-      "coverage_status": "coming_soon",
-      "last_reviewed_at": null
+      "coverage_status": "active",
+      "last_reviewed_at": "2026-11-21T13:05:26Z"
     },
     {
       "code": "BH",
@@ -96,10 +96,10 @@
     {
       "code": "SY",
       "name_ar": "سوريا",
-      "enabled": false,
+      "enabled": true,
       "feed_path": "feeds/sy.json",
-      "coverage_status": "coming_soon",
-      "last_reviewed_at": null
+      "coverage_status": "active",
+      "last_reviewed_at": "2026-11-21T13:05:26Z"
     },
     {
       "code": "YE",

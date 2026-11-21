@@ -139,16 +139,14 @@ class PipelineTests(unittest.TestCase):
         )
         self.assertNotEqual(result.returncode, 0)
 
-    def test_manifest_contains_all_supported_countries_with_active_jordan_and_saudi(self):
+    def test_manifest_contains_all_supported_countries_with_active_feeds(self):
         manifest = json.loads((ROOT / "countries.json").read_text(encoding="utf-8"))
         self.assertEqual(
             {entry["code"] for entry in manifest["countries"]},
             {code for code, _ in COUNTRIES},
         )
-        self.assertEqual(
-            [entry["code"] for entry in manifest["countries"] if entry["enabled"]],
-            ["JO", "SA"],
-        )
+        active_codes = {entry["code"] for entry in manifest["countries"] if entry["enabled"]}
+        self.assertTrue({"JO", "SA"}.issubset(active_codes))
         self.assertEqual(validate_manifest(ROOT / "countries.json"), [])
 
     def test_country_feeds_are_empty_or_migrated_without_duplicates(self):
@@ -159,16 +157,17 @@ class PipelineTests(unittest.TestCase):
         )
         manifest = json.loads((ROOT / "countries.json").read_text(encoding="utf-8"))
         active_codes = {entry["code"] for entry in manifest["countries"] if entry["enabled"]}
-        self.assertEqual(active_codes, {"JO", "SA"})
         self.assertEqual(
             len(json.loads((ROOT / "feeds/sa.json").read_text(encoding="utf-8"))["advisories"]),
             5,
         )
         for code, _ in COUNTRIES:
-            if code in active_codes:
-                continue
             feed_path = ROOT / f"feeds/{code.lower()}.json"
-            self.assertEqual(json.loads(feed_path.read_text(encoding="utf-8"))["advisories"], [])
+            advisories = json.loads(feed_path.read_text(encoding="utf-8"))["advisories"]
+            if code in active_codes:
+                self.assertGreater(len(advisories), 0, f"active feed {code} must not be empty")
+            else:
+                self.assertEqual(advisories, [])
         self.assertEqual(
             json.loads((ROOT / "feeds/regional.json").read_text(encoding="utf-8"))["advisories"],
             [],
